@@ -150,7 +150,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
                 <div className="border-t border-gray-100 px-8 py-3">
                   <p className="text-center text-xs text-gray-400">
-                    Diálogo por el Desarrollo del Sur · Quintana Roo, México
+                    Regresémosle el Brillo al Sur · Quintana Roo, México
                   </p>
                 </div>
               </div>

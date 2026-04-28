@@ -67,7 +67,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/30 z-[2]" />
 
 
-      <div className="relative z-10 container-max px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 container-max px-4 sm:px-6 lg:px-8 text-center pt-20 sm:pt-24 pb-8 sm:pb-0">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -79,23 +79,24 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-6"
+          className="mb-4 sm:mb-6 flex justify-center"
         >
-          Diálogo por el{" "}
-          <span className="text-terracotta-400">Desarrollo</span>
-          <br />
-          del Sur
-        </motion.h1>
+          <img
+            src="/logo-titulo.png"
+            alt="Regresémosle el Brillo al Sur"
+            className="w-full max-w-[220px] sm:max-w-xs md:max-w-sm lg:max-w-md h-auto drop-shadow-2xl"
+          />
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="max-w-2xl mx-auto text-lg sm:text-xl text-cream-200 mb-10 font-body leading-relaxed"
+          className="max-w-2xl mx-auto text-base sm:text-xl text-cream-200 mb-6 sm:mb-10 font-body leading-relaxed"
         >
           Construimos juntos el futuro de la región sur de Quintana Roo.
           Un espacio de consenso para impulsar el bienestar, la inversión
@@ -106,7 +107,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
         >
           <a
             href="#nosotros"
@@ -116,7 +117,7 @@ export default function Hero() {
                 .querySelector("#nosotros")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="px-8 py-4 bg-terracotta-500 hover:bg-terracotta-600 text-white rounded-xl text-lg font-semibold transition-all hover:scale-105 shadow-lg shadow-terracotta-500/30"
+            className="px-8 py-3 sm:py-4 bg-terracotta-500 hover:bg-terracotta-600 text-white rounded-xl text-base sm:text-lg font-semibold transition-all hover:scale-105 shadow-lg shadow-terracotta-500/30"
           >
             Conoce la iniciativa
           </a>
@@ -128,7 +129,7 @@ export default function Hero() {
                 .querySelector("#voces")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="px-8 py-4 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white rounded-xl text-lg font-semibold transition-all border border-white/30 hover:scale-105"
+            className="px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white rounded-xl text-base sm:text-lg font-semibold transition-all border border-white/30 hover:scale-105"
           >
             Comparte tu voz
           </a>

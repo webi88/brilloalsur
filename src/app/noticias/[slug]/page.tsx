@@ -10,16 +10,35 @@ export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
 }
 
+const BASE_URL = "https://brilloalsur.com";
+
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const post = getPostBySlug(params.slug);
   if (!post) return {};
+  const imageUrl = post.image.startsWith("http") ? post.image : `${BASE_URL}${post.image}`;
   return {
-    title: `${post.title} | Diálogo por el Desarrollo del Sur`,
+    title: `${post.title} | Regresémosle el Brillo al Sur`,
     description: post.excerpt,
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      images: [post.image],
+      url: `${BASE_URL}/noticias/${post.slug}/`,
+      siteName: "Regresémosle el Brillo al Sur",
+      type: "article",
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [imageUrl],
     },
   };
 }
@@ -87,7 +106,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           <div className="flex flex-wrap items-center gap-5 py-6 border-b border-gray-200 text-sm text-gray-500">
             <span className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-full bg-olive-700 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
-                DDS
+                RBS
               </div>
               <div>
                 <span className="font-semibold text-gray-900 block leading-tight">{post.author}</span>

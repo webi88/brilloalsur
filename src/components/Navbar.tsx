@@ -66,7 +66,7 @@ export default function Navbar() {
         >
           <Image
             src="/logo.png"
-            alt="Diálogo por el Desarrollo del Sur"
+            alt="Regresémosle el Brillo al Sur"
             width={48}
             height={48}
             className="w-10 h-10 md:w-12 md:h-12 object-contain"
@@ -77,7 +77,7 @@ export default function Navbar() {
             }`}
             style={{ fontFamily: "var(--font-montserrat, sans-serif)", fontWeight: 700 }}
           >
-            Diálogo por el Sur
+            Regresémosle el Brillo al Sur
           </span>
         </a>
 

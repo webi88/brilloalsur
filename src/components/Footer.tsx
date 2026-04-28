@@ -107,17 +107,17 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <Image
                 src="/logo.png"
-                alt="Diálogo por el Desarrollo del Sur"
+                alt="Regresémosle el Brillo al Sur"
                 width={48}
                 height={48}
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div>
                 <p className="font-heading font-bold text-white text-lg">
-                  Diálogo por el
+                  Regresémosle el
                 </p>
                 <p className="font-heading font-bold text-terracotta-400 text-lg -mt-1">
-                  Desarrollo del Sur
+                  Brillo al Sur
                 </p>
               </div>
             </div>
@@ -133,7 +133,7 @@ export default function Footer() {
               </p>
               <p className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-terracotta-400" />
-                contacto@dialogoporelsur.mx
+                contacto@brilloalsur.com
               </p>
             </div>
             <div className="flex gap-3">
@@ -191,7 +191,7 @@ export default function Footer() {
       <div className="border-t border-olive-700">
         <div className="container-max px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-cream-400">
           <p>
-            © {new Date().getFullYear()} Diálogo por el Desarrollo del Sur. Todos
+            © {new Date().getFullYear()} Regresémosle el Brillo al Sur. Todos
             los derechos reservados.
           </p>
           <p>

@@ -21,7 +21,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Diálogo por el Desarrollo del Sur | Quintana Roo",
+  title: "Regresémosle el Brillo al Sur | Quintana Roo",
   description:
     "Iniciativa ciudadana para impulsar el desarrollo sustentable, la inversión y el bienestar en la región sur de Quintana Roo: Felipe Carrillo Puerto, Bacalar y Othón P. Blanco.",
   keywords: [

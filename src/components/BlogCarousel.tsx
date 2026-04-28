@@ -25,6 +25,7 @@ const categoryColors: Record<string, string> = {
   Infraestructura: "bg-terracotta-100 text-terracotta-700",
   Turismo: "bg-blue-100 text-blue-700",
   Educación: "bg-olive-100 text-olive-700",
+  Desarrollo: "bg-emerald-100 text-emerald-700",
   Energía: "bg-yellow-100 text-yellow-700",
   Cultura: "bg-purple-100 text-purple-700",
   Agricultura: "bg-green-100 text-green-700",
@@ -234,7 +235,7 @@ function PostCard({ post, router }: { post: BlogPost; router: ReturnType<typeof 
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-olive-200 to-olive-300 flex items-center justify-center">
-            <span className="text-olive-500 text-4xl font-heading font-bold opacity-20">DDS</span>
+            <span className="text-olive-500 text-4xl font-heading font-bold opacity-20">RBS</span>
           </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
@@ -250,7 +251,7 @@ function PostCard({ post, router }: { post: BlogPost; router: ReturnType<typeof 
           <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{post.date}</span>
           <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{post.readTime}</span>
         </div>
-        <h3 className="font-heading font-bold text-gray-900 text-base mb-2 group-hover:text-olive-600 transition-colors line-clamp-2 flex-1">
+        <h3 className="font-heading font-bold text-gray-900 text-base mb-2 group-hover:text-olive-600 transition-colors line-clamp-2">
           {post.title}
         </h3>
         <p className="text-gray-600 text-sm leading-relaxed mb-3 line-clamp-2">
