@@ -1,5 +1,12 @@
 Options -MultiViews
 RewriteEngine On
+
+# PHP articles: redirect unknown noticias slugs to the dynamic viewer
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^noticias/([^/]+)/?$ /noticias/view/index.html [L]
+
+# General: add index.html to clean URLs
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /$1/index.html [L]

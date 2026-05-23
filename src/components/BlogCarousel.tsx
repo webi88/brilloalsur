@@ -41,11 +41,24 @@ export default function BlogCarousel() {
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    // In production, fetch from Google Sheets API route
-    // fetch('/api/blog').then(r => r.json()).then(data => setPosts(data));
     const check = () => setIsDesktop(window.innerWidth >= 1024);
     check();
     window.addEventListener("resize", check);
+
+    // Fetch PHP-stored articles and prepend to hardcoded ones
+    fetch("/api/articles.php")
+      .then(r => r.json())
+      .then((phpPosts: Array<{ slug: string; title: string; excerpt: string; category: string; date: string; readTime: string; image: string }>) => {
+        if (!Array.isArray(phpPosts) || phpPosts.length === 0) return;
+        const phpSlugs = new Set(phpPosts.map(p => p.slug));
+        const merged = [
+          ...phpPosts.map(p => ({ ...p, url: `/noticias/${p.slug}/` })),
+          ...fallbackPosts.filter(p => !phpSlugs.has(p.slug ?? "")),
+        ];
+        setPosts(merged);
+      })
+      .catch(() => {}); // silently fall back to hardcoded posts
+
     return () => window.removeEventListener("resize", check);
   }, []);
 

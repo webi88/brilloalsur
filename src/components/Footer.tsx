@@ -204,6 +204,10 @@ export default function Footer() {
             >
               webi.mx
             </a>
+            {" · "}
+            <a href="/admin/" className="opacity-0 hover:opacity-100 transition-opacity select-none">
+              ·
+            </a>
           </p>
         </div>
       </div>
