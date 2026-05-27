@@ -13,6 +13,35 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    slug: "sector-productivo-comite-mexico-belice-frontera-sur",
+    title: "El sector productivo llama a concretar el Comité México-Belice para agilizar la Frontera Sur",
+    excerpt:
+      "Hay un amplio consenso del sector empresarial del sur de Quintana Roo y las autoridades de Othón P. Blanco y Bacalar para poner en marcha una Agenda Estratégica y un Comité de la Frontera Sur México-Belice.",
+    category: "Economía",
+    date: "26 May 2026",
+    readTime: "4 min",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=85",
+    author: "Equipo Brillo al Sur",
+    authorRole: "Regresémosle el Brillo al Sur",
+    content: `
+      <p>Hay un amplio consenso del sector empresarial del sur de Quintana Roo y las autoridades de Othón P. Blanco y Bacalar para poner en marcha una Agenda Estratégica y un Comité de la Frontera Sur México-Belice. Para concretar esto se requeriría un último impulso en la agilidad de los procesos administrativos, un paso interinstitucional pendiente que ayude a concretar el dinamismo de nuestra economía regional.</p>
+
+      <p>La cotidianidad de nuestra frontera demuestra que la integración económica con Belice es un sistema vivo y permanente. El intercambio comercial, el flujo turístico, la proveeduría de servicios y la movilidad ocurren a diario, demandando un marco de coordinación formal que optimice estos procesos. La propuesta de este Comité busca funcionar como una mesa operativa y práctica, aprovechando la infraestructura institucional existente, optimizando los recursos y evitando la creación de cargas presupuestales adicionales.</p>
+
+      <figure style="margin: 2rem 0;">
+        <img src="/info-frontera-belice.png" alt="Infografía: ¡Activación de la Frontera México-Belice!" style="width:100%; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.12);" />
+      </figure>
+
+      <p>Resolver los históricos cuellos de botella en los cruces fronterizos, potenciar el turismo binacional y dar certidumbre a la inversión son metas prioritarias para el desarrollo del sureste. Esta frontera posee las características necesarias para consolidarse como una gran plataforma logística y de conectividad entre ambas naciones, un potencial que puede detonarse con el debido acompañamiento y la celeridad en las validaciones oficiales correspondientes.</p>
+
+      <p>La voluntad política y la visión ejecutiva dan resultados históricos cuando se alinean los esfuerzos hacia un objetivo común. La exitosa gestión de la Gobernadora Mara Lezama para concretar la modernización de la aduana en el Aeropuerto de Chetumal es una prueba contundente de cómo la eficiencia institucional transforma la competitividad de una región. Ese mismo dinamismo y sentido de oportunidad es el que hoy se requiere para consolidar la agenda fronteriza y activar el Comité de manera oportuna.</p>
+
+      <p>El sector productivo y las familias del sur de nuestro estado visualizan este mecanismo como una ventana de oportunidad crucial para el bienestar regional. Las bases técnicas están listas y el respaldo social es absoluto. Convencidos de que la coordinación institucional es la clave del progreso, el empresariado hace un atento llamado a priorizar la formalización de este espacio, asegurando que el desarrollo del sur avance al ritmo que el contexto económico global demanda.</p>
+
+      <p><strong>#RegresémosleElBrilloAlSur</strong></p>
+    `,
+  },
+  {
     slug: "gano-la-desinformacion-inversion-panama-mahahual",
     title: "Ganó la desinformación: la inversión destinada para nuestra región la invitan en regiones más desarrolladas",
     excerpt:
