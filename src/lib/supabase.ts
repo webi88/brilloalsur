@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { posts as staticPosts } from "./posts";
 
 const sbUrl  = process.env.NEXT_PUBLIC_SUPABASE_URL  ?? "";
 const sbAnon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
@@ -44,27 +45,37 @@ function normalize(row: Record<string, unknown>): Post {
   };
 }
 
+function staticToPost(s: typeof staticPosts[0]): Post {
+  return { id: s.slug, ...s };
+}
+
 export async function fetchPosts(): Promise<Post[]> {
-  if (!SUPABASE_READY) return [];
-  const { data, error } = await supabase
-    .from("posts")
-    .select("*")
-    .eq("site", "brilloalsur")
-    .eq("status", "published")
-    .order("created_at", { ascending: false });
-  if (error) { console.warn("[brilloalsur] fetch error:", error.message); return []; }
-  return (data ?? []).map(normalize);
+  let supabasePosts: Post[] = [];
+  if (SUPABASE_READY) {
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("site", "brilloalsur")
+      .eq("status", "published")
+      .order("created_at", { ascending: false });
+    if (!error) supabasePosts = (data ?? []).map(normalize);
+  }
+  const existingSlugs = new Set(supabasePosts.map((p) => p.slug));
+  const fallback = staticPosts.filter((p) => !existingSlugs.has(p.slug)).map(staticToPost);
+  return [...supabasePosts, ...fallback];
 }
 
 export async function fetchPost(slug: string): Promise<Post | null> {
-  if (!SUPABASE_READY) return null;
-  const { data, error } = await supabase
-    .from("posts")
-    .select("*")
-    .eq("site", "brilloalsur")
-    .eq("slug", slug)
-    .eq("status", "published")
-    .single();
-  if (error) return null;
-  return normalize(data);
+  if (SUPABASE_READY) {
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("site", "brilloalsur")
+      .eq("slug", slug)
+      .eq("status", "published")
+      .single();
+    if (!error && data) return normalize(data);
+  }
+  const fallback = staticPosts.find((p) => p.slug === slug);
+  return fallback ? staticToPost(fallback) : null;
 }
