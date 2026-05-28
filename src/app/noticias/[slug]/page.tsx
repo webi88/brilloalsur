@@ -1,19 +1,22 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
-import { getPostBySlug, getAllSlugs, posts } from "@/lib/posts";
+import { fetchPost, fetchPosts } from "@/lib/supabase";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ArticleClient from "./ArticleClient";
 
+export const revalidate = 60;
+
 export async function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }));
+  const posts = await fetchPosts();
+  return posts.map((p) => ({ slug: p.slug }));
 }
 
 const BASE_URL = "https://brilloalsur.com";
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+  const post = await fetchPost(params.slug);
   if (!post) return {};
   const imageUrl = post.image.startsWith("http") ? post.image : `${BASE_URL}${post.image}`;
   return {
@@ -52,12 +55,13 @@ const categoryColors: Record<string, string> = {
   Agricultura: "bg-green-100 text-green-700",
 };
 
-export default function ArticlePage({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+export default async function ArticlePage({ params }: { params: { slug: string } }) {
+  const post = await fetchPost(params.slug);
   if (!post) notFound();
 
-  const related = posts.filter((p) => p.slug !== post.slug && p.category === post.category).slice(0, 3);
-  const fallbackRelated = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const allPosts = await fetchPosts();
+  const related = allPosts.filter((p) => p.slug !== post.slug && p.category === post.category).slice(0, 3);
+  const fallbackRelated = allPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
   const relatedPosts = related.length > 0 ? related : fallbackRelated;
 
   return (
