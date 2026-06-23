@@ -35,9 +35,9 @@ const categoryColors: Record<string, string> = {
 const CARD_W = 300;
 const CARD_GAP = 24;
 
-export default function BlogCarousel() {
+export default function BlogCarousel({ posts: externalPosts }: { posts?: BlogPost[] }) {
   const router = useRouter();
-  const [posts, setPosts] = useState<BlogPost[]>(fallbackPosts);
+  const [posts, setPosts] = useState<BlogPost[]>(externalPosts || fallbackPosts);
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
@@ -45,22 +45,14 @@ export default function BlogCarousel() {
     check();
     window.addEventListener("resize", check);
 
-    // Fetch PHP-stored articles and prepend to hardcoded ones
-    fetch("/api/articles.php")
-      .then(r => r.json())
-      .then((phpPosts: Array<{ slug: string; title: string; excerpt: string; category: string; date: string; readTime: string; image: string }>) => {
-        if (!Array.isArray(phpPosts) || phpPosts.length === 0) return;
-        const phpSlugs = new Set(phpPosts.map(p => p.slug));
-        const merged = [
-          ...phpPosts.map(p => ({ ...p, url: `/noticias/${p.slug}/` })),
-          ...fallbackPosts.filter(p => !phpSlugs.has(p.slug ?? "")),
-        ];
-        setPosts(merged);
-      })
-      .catch(() => {}); // silently fall back to hardcoded posts
+    if (externalPosts && externalPosts.length > 0) {
+      setPosts(externalPosts);
+    } else {
+      setPosts(fallbackPosts);
+    }
 
     return () => window.removeEventListener("resize", check);
-  }, []);
+  }, [externalPosts]);
 
   return isDesktop ? (
     <StickyCarousel posts={posts} router={router} />

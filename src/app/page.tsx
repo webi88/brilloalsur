@@ -6,8 +6,13 @@ import NoticiasCarousel from "@/components/BlogCarousel";
 import VocesSection from "@/components/VocesSection";
 import Footer from "@/components/Footer";
 import ScrollToSection from "@/components/ScrollToSection";
+import { fetchPosts } from "@/lib/supabase";
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function Home() {
+  const posts = await fetchPosts();
+
   return (
     <main>
       <ScrollToSection />
@@ -17,7 +22,7 @@ export default function Home() {
       <Hero />
 
       {/* 2. Noticias */}
-      <NoticiasCarousel />
+      <NoticiasCarousel posts={posts} />
 
       {/* 3. Voz de nuestra gente */}
       <VocesSection />
