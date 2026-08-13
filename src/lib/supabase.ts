@@ -82,14 +82,18 @@ export async function fetchPosts(): Promise<Post[]> {
 
 export async function fetchPost(slug: string): Promise<Post | null> {
   if (SUPABASE_READY) {
+    /* Nada impide publicar dos artículos con el mismo slug desde el panel, y
+     * .single() devuelve error cuando hay más de una fila: el artículo daba
+     * 404 en lugar de mostrarse. Con duplicados se toma el más reciente. */
     const { data, error } = await supabase
       .from("posts")
       .select("*")
       .eq("site", "brilloalsur")
       .eq("slug", slug)
       .eq("status", "published")
-      .single();
-    if (!error && data) return normalize(data);
+      .order("created_at", { ascending: false })
+      .limit(1);
+    if (!error && data && data.length > 0) return normalize(data[0]);
   }
   const fallback = staticPosts.find((p) => p.slug === slug);
   return fallback ? staticToPost(fallback) : null;
