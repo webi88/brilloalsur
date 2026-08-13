@@ -1,8 +1,23 @@
 import { createClient } from "@supabase/supabase-js";
 import { posts as staticPosts } from "./posts";
 
-const sbUrl  = process.env.NEXT_PUBLIC_SUPABASE_URL  ?? "";
-const sbAnon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
+/* Mismo caso que el panel de administración: las variables de entorno de
+ * Vercel apuntan a un proyecto de Supabase que ya no resuelve en DNS, y esa
+ * cuenta de Vercel dejó de ser accesible para corregirlas. Por eso el sitio
+ * solo mostraba los artículos estáticos de posts.ts y no los publicados
+ * desde el panel.
+ *
+ * La clave `anon` es pública por diseño (el navegador la recibe igualmente).
+ * Si se recupera el acceso a Vercel, devolver esto a process.env.
+ */
+const SUPABASE_URL  = "https://zsfamrweexjkxjbsqaur.supabase.co";
+const SUPABASE_ANON =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9" +
+  ".eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzZmFtcndlZXhqa3hqYnNxYXVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1ODE3NzksImV4cCI6MjA5NTE1Nzc3OX0" +
+  ".bQxSdwwEO9L0Pr8WCoFDwdoxn77SLFqyQsVfwoabkKw";
+
+const sbUrl  = SUPABASE_URL;
+const sbAnon = SUPABASE_ANON;
 
 export const SUPABASE_READY =
   sbUrl.startsWith("https://") && !sbUrl.includes("placeholder") && sbAnon.length > 20;
